@@ -12,7 +12,7 @@ import { Helmet } from "react-helmet-async";
 
 
 const Order = () => {
-    const categorys = ["salad", "pizza","soup","dessert",'drinks']
+    const categorys = ["salad","pizza","soup","dessert",'drinks']
     const {category} = useParams()
     const initialsIndex = categorys.indexOf(category)
     const [tabIndex, setTabIndex] = useState(initialsIndex);
@@ -34,6 +34,8 @@ const Order = () => {
         <Helmet>
             <title> Bistro boss | our order </title>
         </Helmet>
+
+        
       <Cover img={orderCoverImg} title="Our Food" />
 
       <Tabs selectedIndex={tabIndex} onSelect={(index) => setTabIndex(index)}>

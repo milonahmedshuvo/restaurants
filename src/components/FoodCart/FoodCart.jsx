@@ -13,11 +13,11 @@ const FoodCart = ({ item }) => {
        <p className="bg-slate-900 px-4 absolute right-0 mr-4 mt-4 text-white">{price}</p>
 
 
-      <div className="card-body flex flex-col">
+      <div className="card-body flex flex-col items-center">
         <h2 className="card-title">{name}</h2>
-        <p>{recipe}</p>
+        <p className="text-center">{recipe}</p>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">Buy Now</button>
+          <button className="btn btn-outline bg-slate-300 border-0 border-b-4 border-b-orange-400 mt-2">Buy Now</button>
         </div>
       </div>
     </div>
