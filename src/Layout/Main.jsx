@@ -5,9 +5,9 @@ import Footer from "../pages/Sheared/Footer";
 
 const Main = () => {
     const location = useLocation()
-    console.log(location)
-    const login = location.pathname.includes("login")
-    console.log("", login)
+   
+    const login = location.pathname.includes("login") || location.pathname.includes("signup")
+    
 
     return (
         <div>

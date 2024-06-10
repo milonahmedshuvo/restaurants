@@ -1,17 +1,25 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useState, } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
-
-
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from '../../Providers/AuthProvider';
+import Swal from 'sweetalert2';
 
 
 const Login = () => {
-      const refValue = useRef(null)
+      // const refValue = useRef(null)
       const [disable, setDisable] = useState(true)
+      const {signinUser} = useContext(AuthContext)
+      const navigate = useNavigate()
+      const location = useLocation()
+
+      const from  = location.state?.from?.pathname || "/"
 
 
    useEffect(()=>{
     loadCaptchaEnginge(6);
    },[])
+   
+   
 
     const handleSubmitForm = (event) => {
           event.preventDefault()
@@ -20,11 +28,23 @@ const Login = () => {
           const password = form.password.value 
           
           console.log(email, password)
+          signinUser(email, password)
+          .then((res) => {
+            console.log(res.user)
+            event.target.reset();
+            Swal.fire("Login succesful");
+            navigate(from, {replace: true})
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+
+
     }
 
 
-    const handleCaptcha = () => {
-      const user_captcha_value = refValue.current.value 
+    const handleCaptcha = (e) => {
+      const user_captcha_value = e.target.value 
       console.log(user_captcha_value)
 
       if(validateCaptcha(user_captcha_value)== true){
@@ -87,13 +107,13 @@ const Login = () => {
                 
               </label>
               <input
-                ref={refValue}
+                onBlur={handleCaptcha}
                 type="captcha"
                 placeholder="captcha selcted"
                 className="input input-bordered"
                 
               />
-              <button  onClick={handleCaptcha} className="btn btn-sm bg-gray-800 text-white mt-2">Validate</button>
+              {/* <button   className="btn btn-sm bg-gray-800 text-white mt-2">Validate</button> */}
               
             </div>
 
@@ -102,10 +122,13 @@ const Login = () => {
 
             <div className="form-control mt-6">
               
-              <input disabled={disable} type="submit" value="Login"   className="btn btn-primary" />
+              <input disabled={false} type="submit" value="Login"   className="btn btn-primary" />
             </div>
           </form>
 
+          <Link to='/signup' > 
+          <p>New here?you are new register</p>
+          </Link>
 
         </div>
       </div>
