@@ -2,9 +2,13 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from 'sweetalert2';
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 const Signup = () => {
     const { createUser, userUpdateProfile } = useContext(AuthContext)
+    const axiosPublic = useAxiosPublic()
+
+
 
     const handleSignupForm =(event) => {
         event.preventDefault()
@@ -24,7 +28,23 @@ const Signup = () => {
           userUpdateProfile(name, photourl)
           .then(() => {
             console.log("profile update")
-            Swal.fire("update succesful");
+            
+            const userInfo = {
+              name: name,
+              email: email
+            }
+            axiosPublic.post('/users', userInfo)
+            .then((res) => {
+              console.log("user data in database succes")
+              console.log(res)
+              Swal.fire("update and user add succesful");
+            })
+            .catch((err) => console.log(err))
+
+
+
+
+           
           })
           .catch((err) => console.log(err))
 

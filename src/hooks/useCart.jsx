@@ -8,7 +8,6 @@ import useAuth from "./useAuth";
 const useCart = () => {
     const axiosSecure = useAxiosSecure()
     const {user} = useAuth()
-    console.log("useremail", user?.email)
 
     const { data: carts=[], refetch } = useQuery({
         queryKey: ["carts", user?.email],

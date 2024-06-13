@@ -7,6 +7,9 @@ import Login from "../pages/Login/Login";
 import Signup from "../pages/Signup/Signup";
 import Secret from "../ProviteRoutes/Secret";
 import ProviteRoutes from "../ProviteRoutes/ProviteRoutes";
+import Dashboard from "../Layout/Dashboard";
+import Cart from "../pages/Dashboard/Cart/Cart";
+import Allusers from "../pages/Dashboard/Allusers/Allusers";
 
 
 export const router = createBrowserRouter([
@@ -39,5 +42,20 @@ export const router = createBrowserRouter([
                 element: <ProviteRoutes> <Secret/> </ProviteRoutes>
             }
         ] 
+    },
+
+    {
+        path: "/dashboard",
+        element: <Dashboard/>,
+        children: [
+            {
+                path: "/dashboard/mycart",
+                element: <Cart/>
+            },
+            {
+                path: "/dashboard/allusers",
+                element: <Allusers/>
+            }
+        ]
     }
 ])

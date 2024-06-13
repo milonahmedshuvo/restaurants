@@ -3,6 +3,7 @@ import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-s
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from '../../Providers/AuthProvider';
 import Swal from 'sweetalert2';
+import GoogleSingin from '../../components/GoogleSingin/GoogleSingin';
 
 
 const Login = () => {
@@ -43,6 +44,12 @@ const Login = () => {
     }
 
 
+
+
+  
+
+
+
     const handleCaptcha = (e) => {
       const user_captcha_value = e.target.value 
       console.log(user_captcha_value)
@@ -56,7 +63,7 @@ const Login = () => {
 
 
   return (
-    <div className="hero min-h-screen bg-base-200">
+    <div className="hero min-h-screen bg-base-200 ">
       <div className="hero-content flex-col lg:flex-row-reverse">
 
 
@@ -70,7 +77,7 @@ const Login = () => {
         </div>
 
 
-        <div className="card w-1/2 max-w-sm shadow-2xl bg-base-100">
+        <div className="card w-1/2 max-w-sm shadow-2xl bg-base-100 pb-5">
 
 
           <form onSubmit={handleSubmitForm} className="card-body">
@@ -127,8 +134,10 @@ const Login = () => {
           </form>
 
           <Link to='/signup' > 
-          <p>New here?you are new register</p>
+          <p className='text-center'>New here?you are new register</p>
           </Link>
+
+          <GoogleSingin > </GoogleSingin>
 
         </div>
       </div>
