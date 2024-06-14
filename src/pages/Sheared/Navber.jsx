@@ -64,10 +64,12 @@ const Navber = () => {
 
 
       <li>
+        <Link to='/dashboard' > 
         <button className="btn btn-sm  ">
             <FaShoppingCart/>
           <div className="badge badge-secondary"> {carts.length} </div>
         </button>
+        </Link>
       </li>
 
       {user ? (

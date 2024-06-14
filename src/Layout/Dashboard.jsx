@@ -1,15 +1,17 @@
 import { FaAd, FaHome, FaSearch, FaShoppingCart, FaUserAlt } from "react-icons/fa";
 import { FaTowerObservation } from "react-icons/fa6";
 import { NavLink, Outlet } from "react-router-dom";
+import useIsAdmin from "../hooks/useIsAdmin";
 
 
 
 
 const Dashboard = () => {
-  
+      const [isAdmin] = useIsAdmin()
+      console.log(isAdmin)
 
 
-  const isAdmin = true
+  // const isAdmin = true
 
 
   return (
@@ -18,7 +20,7 @@ const Dashboard = () => {
       <div className=" bg-orange-400 w-64 min-h-screen">
         <ul className="menu">
 
-          { isAdmin && <> 
+          { isAdmin ? <> 
                     
             <li>
             <NavLink to="/">
@@ -51,7 +53,40 @@ const Dashboard = () => {
             </NavLink>
           </li>
           
-          </>  }
+          </> :  <> 
+                    
+                    <li>
+                    <NavLink to="/">
+                      <FaHome></FaHome>
+                        User Home
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/">
+                      <FaTowerObservation></FaTowerObservation>
+                        Reservition
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/dashboard/mycart">
+                      <FaShoppingCart></FaShoppingCart>
+                        My carts
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/">
+                       <FaAd></FaAd>
+                         Add a Review
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink to="/dashboard/allusers">
+                         <FaUserAlt></FaUserAlt>
+                          My Bookings 
+                    </NavLink>
+                  </li>
+                  
+                  </>  }
           
 
 
