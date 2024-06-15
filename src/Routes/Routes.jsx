@@ -10,6 +10,8 @@ import ProviteRoutes from "../ProviteRoutes/ProviteRoutes";
 import Dashboard from "../Layout/Dashboard";
 import Cart from "../pages/Dashboard/Cart/Cart";
 import Allusers from "../pages/Dashboard/Allusers/Allusers";
+import AddItem from "../pages/Dashboard/AddItem/AddItem";
+import AdminRoutes from "../ProviteRoutes/AdminRoutes";
 
 
 export const router = createBrowserRouter([
@@ -49,12 +51,18 @@ export const router = createBrowserRouter([
         element: <Dashboard/>,
         children: [
             {
+                // normar user route 
                 path: "/dashboard/mycart",
                 element: <Cart/>
             },
+            // admin route 
+            {
+                 path: "/dashboard/additem",
+                 element: <AdminRoutes> <AddItem/> </AdminRoutes>
+            },
             {
                 path: "/dashboard/allusers",
-                element: <Allusers/>
+                element: <AdminRoutes>  <Allusers/> </AdminRoutes>
             }
         ]
     }

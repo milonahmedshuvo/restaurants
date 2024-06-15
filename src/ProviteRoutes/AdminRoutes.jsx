@@ -1,16 +1,20 @@
 import { Navigate, useLocation } from "react-router-dom";
 import useIsAdmin from "../hooks/useIsAdmin";
+import useAuth from "../hooks/useAuth";
 
 
 const AdminRoutes = ({children}) => {
+      const {user, loading} = useAuth() 
       const [isAdmin, isAdminLoading ] = useIsAdmin() 
       const location = useLocation()
       
-      if(isAdminLoading){
+
+      if( loading || isAdminLoading){
         return <p>Loading...........</p>
       }
 
-      if(isAdmin){
+      
+      if( user && isAdmin){
         return children
       }else{
         return <Navigate to='/login' state={ { from: location } } replace ></Navigate>
