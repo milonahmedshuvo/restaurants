@@ -31,7 +31,7 @@ const Dashboard = () => {
           <li>
             <NavLink to="/dashboard/additem">
               <FaTowerObservation></FaTowerObservation>
-                Add Items
+                Add Item
             </NavLink>
           </li>
           <li>

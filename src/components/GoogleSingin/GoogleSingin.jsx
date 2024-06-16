@@ -2,10 +2,12 @@ import { FaGoogle } from "react-icons/fa6";
 import useAuth from "../../hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { useNavigate } from "react-router-dom";
 
 const GoogleSingin = () => {
       const {googleSignin} = useAuth()
       const axiosPublic = useAxiosPublic()
+      const navigate = useNavigate()
 
 
 
@@ -16,9 +18,9 @@ const handleGoogleSingIn = () => {
     // console.log("google singin")
     googleSignin()
     .then((res) => {
-        console.log("google singin ", res)
-        console.log(res.user.displayName)
-        console.log(res.user.email)
+        // console.log("google singin ", res)
+        // console.log(res.user.displayName)
+        // console.log(res.user.email)
          const userinfo = {
             name: res.user.displayName,
             email: res.user.email
@@ -27,10 +29,11 @@ const handleGoogleSingIn = () => {
          axiosPublic.post("/users", userinfo)
          .then((res) => {
             console.log(res.data)
+            
          })
 
 
-
+         navigate('/')  
         Swal.fire("Google Singin succes");
     })
     .catch((err) => console.log(err))
