@@ -2,6 +2,7 @@ import useCart from "../../../hooks/useCart";
 import { FaTrashAlt } from "react-icons/fa";
 import Swal from 'sweetalert2'
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 
 
@@ -44,10 +45,16 @@ const Cart = () => {
 
   return (
     <div>
-      <div className="flex justify-evenly">
+      <div className="flex justify-evenly my-6">
         <h1>item: {carts.length} </h1>
         <h1>total price: {totalPrice} </h1>
-        <div className="btn btn-sm btn-primary">pay</div>
+
+         {carts.length ? <Link to='/dashboard/payment'>  
+          <div className="btn btn-sm btn-primary">pay</div>
+         </Link> 
+         : <div disabled className="btn btn-sm btn-primary">pay</div> } 
+
+        
       </div>
 
       {/* table show here  */}
@@ -64,6 +71,7 @@ const Cart = () => {
               <th>Image</th>
               <th>Name</th>
               <th>Price</th>
+              <th>Action</th>
               <th>Action</th>
             </tr>
           </thead>
