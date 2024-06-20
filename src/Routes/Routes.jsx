@@ -15,6 +15,7 @@ import AdminRoutes from "../ProviteRoutes/AdminRoutes";
 import ManageItem from "../pages/Dashboard/ManageItem/ManageItem";
 import UpateManageItem from "../pages/Dashboard/UpateManageItem/UpateManageItem";
 import Payment from "../pages/Dashboard/Payment/Payment/Payment";
+import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 
 
 
@@ -63,6 +64,12 @@ export const router = createBrowserRouter([
                 path: "/dashboard/payment",
                 element: <Payment></Payment>
             },
+            {
+                path: "/dashboard/paymentHistory",
+                element: <PaymentHistory></PaymentHistory>
+            },
+
+
             // admin route 
             {
                  path: "/dashboard/additem",
