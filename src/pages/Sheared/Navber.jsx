@@ -4,12 +4,14 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import Swal from "sweetalert2";
 import { FaShoppingCart } from "react-icons/fa";
 import useCart from "../../hooks/useCart";
+import useIsAdmin from "../../hooks/useIsAdmin";
 
 
 
 const Navber = () => {
   const { user, logOut } = useContext(AuthContext);
   const [carts] = useCart()
+  const [isAdmin] = useIsAdmin()
 
   
 
@@ -85,6 +87,18 @@ const Navber = () => {
           </li>
         </>
       )}
+
+
+     {
+      user && isAdmin && <li><Link to="/dashboard/adminHome">Dashboard</Link></li>
+     },
+     {
+      user && !isAdmin && <li><Link to="/dashboard/userHome">Dashboard</Link></li>
+     }
+
+
+
+
     </>
   );
 
